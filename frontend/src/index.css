@@ -1,0 +1,14 @@
+:root {
+  font-family: Georgia, "Iowan Old Style", Palatino, serif;
+  line-height: 1.5;
+  color: #2b241c;
+  background: #f6f1e8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
