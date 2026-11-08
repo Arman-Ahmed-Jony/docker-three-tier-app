@@ -1,0 +1,107 @@
+
+সংক্ষিপ্ত বিবরণ
+
+✨ BATCH 14 ✨
+
+🚀 Assignment: Deploy a Containerized 3-Tier Application on AWS EC2
+🏆 Total Marks: 100  |  👤 Individual Assignment
+
+📖 The Story
+ShopLite 🛍️ is a small e-commerce startup in Dhaka. Its developers have built a product catalogue application that currently runs only on a laptop 💻. The CTO wants it live on AWS ☁️ before next week's investor demo.
+
+There is no budget for Kubernetes, ECS or any managed database, so everything must run on plain EC2 instances using Docker images published on Docker Hub 🐳.
+
+The security team has one non-negotiable rule 🔒: the database must never be reachable from the internet.
+
+You have just joined ShopLite as the DevOps Engineer. Your mission: take this application from the laptop to a working AWS deployment! 💪
+
+🧩 Part A: The Application (15 Marks)
+Build a simple 3-tier application in any language or framework you like.
+
+🎨 Frontend tier: a web page that lists products and lets a user add a new product.
+
+⚙️ Backend tier: a REST API that reads and writes product data.
+
+🗄️ Database tier: a database of your choice that stores the product data permanently.
+
+🐳 Part B: Containerization and Docker Hub (20 Marks)
+Write your own Dockerfile for the frontend and the backend.
+
+Build the images and push them to your own public Docker Hub repositories.
+
+Every image must have a version tag. The tag "latest" alone will not be accepted. 🏷️
+
+☁️ Part C: AWS Infrastructure (20 Marks)
+Create one VPC with at least one public subnet and one private subnet.
+
+
+
+Database server (must not have a public IP)
+
+Users must be able to reach the application only through EC2-1 on port 80.
+
+Every Security Group must follow least privilege. Open only what is truly needed, and only to the source that needs it. 🛡️
+
+🚢 Part D: Deployment (25 Marks)
+🚫 No source code may be copied to, cloned on, or built on any EC2 instance. Every application container must be pulled directly from Docker Hub.
+
+🔧 Install and configure Nginx manually on the EC2-1 host (not inside a container). Nginx must serve the frontend and forward API traffic to the backend on EC2-2.
+
+🌐 Docker Network: on every EC2, create your own user-defined Docker network and run your containers on it. The default bridge network will not be accepted.
+
+📦 Docker Volume: the database container must store its data in a named Docker volume that you create.
+
+🔗 The backend on EC2-2 must connect to the database on EC2-3 over private networking.
+
+💾 Product data must survive a container removal, a new container start and an instance reboot.
+
+✅ A product added from the browser must still be visible after refreshing the page.
+
+🤔 Part E: Scenario-Based Questions (20 Marks)
+Answer each question in your own words in your README. Each question carries 4 marks.
+
+Q1. 😱 It is the morning of the investor demo. The page loads, but the product list is empty and the browser shows "502 Bad Gateway" for every API call. Explain how you would find and fix the root cause.
+
+Q2. 🩹 The security team asks you to install an OS security patch on the database server. Explain how the patch will reach EC2-3 without breaking the security rule.
+
+Q3. ⏪ A developer pushed a new backend image and now adding a product fails for every user. The CTO wants the old version back within 2 minutes. Explain what you would do.
+
+Q4. 🚨 A teammate opens the database port to 0.0.0.0/0 "just for testing" and forgets about it. Explain the impact and how your design should prevent this.
+
+Q5. 📈 After the demo, traffic grows 10 times. Explain which tier will fail first, why, and what you would change in this architecture.
+
+📬 Submission
+Submit only your GitHub repository link 🔗. Everything must be inside the repository:
+
+📁 Application source code, Dockerfiles and your Nginx configuration file.
+
+📝 A proper README.md containing:
+
+Project overview and architecture diagram
+
+Docker Hub image links with tags
+
+Step-by-step deployment process you followed
+
+Answers to Part E
+
+📸 Screenshots inside the README:
+
+The running application in the browser
+
+docker ps output on each EC2
+
+docker network ls and docker network inspect output on each EC2
+
+docker volume ls and docker volume inspect output on EC2-3
+
+Inbound rules of every Security Group
+
+EC2-3 details showing no public IP
+
+A product still present after the database container is removed and started again
+
+📌 Rules
+👤 This is an individual assignment. Copied work will receive zero marks.
+
+💸 Terminate all EC2 instances after evaluation to avoid AWS charges.
